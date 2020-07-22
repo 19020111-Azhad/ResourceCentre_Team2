@@ -101,6 +101,19 @@ public class ResourceCentreTest {
 	public void doLoanCamcorderTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		assertNotNull("Test if there is valid Camcorder arraylist to loan out", camcorderList);
+		camcorderList.add(cc1);
+		String tag = Helper.readString("Enter asset tag > ");
+		String due = Helper.readString("Enter due date > ");
+		boolean a = ResourceCentre.doLoanCamcorder(camcorderList, tag, due);
+		if (camcorderList.get(0).getAssetTag().equalsIgnoreCase(tag)) {
+			assertTrue("Should be Loaned out",a);
+		} else {
+			assertFalse("Should not be Loaned out",a);
+		}
+		
+		chromebookList.get(0).setIsAvailable(false);
+		assertFalse("Test if a Chromebook is loaned out or not",chromebookList.get(0).getIsAvailable());
 		
 	}
 	
@@ -109,7 +122,7 @@ public class ResourceCentreTest {
 	public void doLoanChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
-		assertNotNull("Test if there is valid Camcorder arraylist to loan out", chromebookList);
+		assertNotNull("Test if there is valid Chromebook arraylist to loan out", chromebookList);
 		chromebookList.add(cb1);
 		String tag = Helper.readString("Enter asset tag > ");
 		String due = Helper.readString("Enter due date > ");
@@ -121,8 +134,7 @@ public class ResourceCentreTest {
 		}
 		
 		chromebookList.get(0).setIsAvailable(false);
-		assertFalse("Test if a Chromebook is loaned out or not",chromebookList.get(0).getIsAvailable());
-		
+		assertFalse("Test if a Chromebook is loaned out or not",chromebookList.get(0).getIsAvailable());	
 	}
 	
 	@Test
